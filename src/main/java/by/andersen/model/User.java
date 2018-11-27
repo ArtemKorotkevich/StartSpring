@@ -11,16 +11,26 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "login")
     private String login;
+    @Column(name = "pass")
     private String pass;
-    private String role;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role")
+    private Role role;
+
+    public User() {
+
+    }
+
+    public User(String login, String pass, Role role) {
+        this.login = login;
+        this.pass = pass;
+        this.role = role;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLogin() {
@@ -39,11 +49,11 @@ public class User {
         this.pass = pass;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

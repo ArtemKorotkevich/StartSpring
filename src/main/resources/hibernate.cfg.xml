@@ -22,6 +22,8 @@
         <property name="hibernate.connection.autocommit">true</property>
 
         <mapping class="by.andersen.model.User"/>
+        <mapping class="by.andersen.model.Dictionary"/>
+        <mapping class="by.andersen.model.Role"/>
 
 
     </session-factory>
