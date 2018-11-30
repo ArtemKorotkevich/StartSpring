@@ -10,8 +10,13 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    @Autowired
+
     private UserService userService;
+
+    @Autowired
+    public void setService(UserService userService){
+        this.userService = userService;
+    }
 
     /*---Add new user---*/
     @PostMapping("/user")

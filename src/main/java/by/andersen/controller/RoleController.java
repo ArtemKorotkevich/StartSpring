@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class RoleCintroller {
+public class RoleController {
+
+
+    private RoleService roleService;
 
     @Autowired
-    private RoleService roleService;
+    public void setService(RoleService roleService){
+        this.roleService = roleService;
+    }
 
 
     @PostMapping("/role")

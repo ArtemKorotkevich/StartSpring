@@ -1,20 +1,25 @@
 package by.andersen.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.io.IOException;
 
 @Entity
-@Component
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
     @Column(name = "login")
     private String login;
+
     @Column(name = "pass")
     private String pass;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role")
     private Role role;
@@ -28,6 +33,7 @@ public class User {
         this.pass = pass;
         this.role = role;
     }
+
 
     public int getId() {
         return id;

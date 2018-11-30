@@ -5,14 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dictionary")
 @Inheritance
-@DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name ="discriminator", discriminatorType = DiscriminatorType.STRING)
 public abstract class Dictionary {
-    public Dictionary(){
-
-    }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -21,6 +18,11 @@ public abstract class Dictionary {
     public Dictionary( String name){
         this.name = name;
     }
+
+    public Dictionary(){
+
+    }
+
 
     public int getId() {
         return id;

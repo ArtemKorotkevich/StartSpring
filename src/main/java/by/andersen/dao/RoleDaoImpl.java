@@ -1,14 +1,19 @@
 package by.andersen.dao;
 
-import by.andersen.model.Dictionary;
 import by.andersen.model.Role;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 @Repository
+@Transactional
 public class RoleDaoImpl implements RoleDao {
     private SessionFactory sessionFactory;
 
@@ -27,8 +32,13 @@ public class RoleDaoImpl implements RoleDao {
     }
 // check this method!
     public List<Role> list() {
-        List list = sessionFactory.getCurrentSession().createQuery("from Role").list();
-        return list;
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Role> cq = cb.createQuery(Role.class);
+        Root<Role> root = cq.from(Role.class);
+        cq.select(root);
+        Query<Role> query = session.createQuery(cq);
+        return query.getResultList();
     }
 
     public void update(Role role) {
