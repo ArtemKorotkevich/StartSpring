@@ -6,12 +6,12 @@ import javax.persistence.*;
 
 @Entity
 @Component
-@DiscriminatorValue(value = "Role")
+@DiscriminatorValue(value = "role")
 public class Role extends Dictionary{
 
-    @Column(name = "ext-id")
+    @Column(name = "ext_Id")
     @GeneratedValue(strategy = GenerationType.TABLE)
-    private int ext_id;
+    private Integer ext_Id;
 
     public Role(String name) {
         super(name);
